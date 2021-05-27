@@ -1,0 +1,103 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>TravelAndTourism</display-name>
+  
+  <!-- User Home -->
+  <servlet>
+  	<servlet-name>user_home</servlet-name>
+  	<jsp-file>/userHome.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>user_home</servlet-name>
+  	<url-pattern>/user/userHome</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Admin Home -->
+  <servlet>
+  	<servlet-name>admin_home</servlet-name>
+  	<jsp-file>/adminHome.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>admin_home</servlet-name>
+  	<url-pattern>/admin/adminHome</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Booking -->
+  <servlet>
+  	<servlet-name>user_booking</servlet-name>
+  	<jsp-file>/booking.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>user_booking</servlet-name>
+  	<url-pattern>/user/booking</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Hotel -->
+  <servlet>
+  	<servlet-name>admin_hotel</servlet-name>
+  	<jsp-file>/hotel.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>admin_hotel</servlet-name>
+  	<url-pattern>/admin/hotel</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Misc -->
+  <servlet>
+  	<servlet-name>admin_misc</servlet-name>
+  	<jsp-file>/misc.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>admin_misc</servlet-name>
+  	<url-pattern>/admin/misc</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Tour -->
+  <servlet>
+  	<servlet-name>admin_tour</servlet-name>
+  	<jsp-file>/tour.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>admin_tour</servlet-name>
+  	<url-pattern>/admin/tour</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Overview -->
+  <servlet>
+  	<servlet-name>overview_fact</servlet-name>
+  	<jsp-file>/overview.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>overview_fact</servlet-name>
+  	<url-pattern>/overview</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- Admin Filter -->
+  <filter>
+    <filter-name>admin_auth</filter-name>
+    <filter-class>com.elanza48.controller.filter.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>admin_auth</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- User Filter -->
+  <filter>
+    <filter-name>user_auth</filter-name>
+    <filter-class>com.elanza48.controller.filter.UserFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>user_auth</filter-name>
+    <url-pattern>/user/*</url-pattern>
+  </filter-mapping>
+  
+  <error-page>
+  	<exception-type>javax.servlet.ServletException</exception-type>
+  	<location>/error.html</location>
+  </error-page>
+  
+  <welcome-file-list>
+    <welcome-file>home.html</welcome-file>
+  </welcome-file-list>
+</web-app>

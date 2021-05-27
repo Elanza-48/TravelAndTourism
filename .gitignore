@@ -1,0 +1,40 @@
+# Maven
+.mvn
+*.project
+*.settings
+/bin/*
+/target/*
+build
+
+# Compiled class file
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# Netbeans
+nbactions*.xml
+nb-configuration*.xml
+
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+#Extra Folders
+/unused
+**/.DS_Store
+/target/
+
+.vscode

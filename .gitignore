@@ -5,6 +5,7 @@
 /bin/*
 /target/*
 build
+.project
 
 # Compiled class file
 *.class

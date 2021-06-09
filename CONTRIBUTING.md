@@ -1,5 +1,5 @@
 # Travel and Tourism
-![The banner](WebContent/Images/banner.png)
+![The banner](src/main/webapp/Images/banner.png)
 
 ---
 ### I earnestly show my gratitude towards

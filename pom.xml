@@ -7,15 +7,15 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>com.elanza48</groupId>
-  <artifactId>TravelAndTourism</artifactId>
-  <version>1.0.1</version>
+  <artifactId>TMS</artifactId>
+  <version>1.5.0</version>
   <packaging>war</packaging>
   
-  <name>TravelAndTourism</name>
+  <name>TourismManagementSystem</name>
   <description>Tourism Management System</description>
   
   <build>
-    <finalName>TravelAndTourism</finalName>
+    <finalName>TourismManagementSystem</finalName>
     <pluginManagement>
     	<plugins>
 	   	<!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
@@ -75,7 +75,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->

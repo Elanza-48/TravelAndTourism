@@ -1,4 +1,4 @@
-<%@page import="java.sql.*,com.elanza48.model.DAO.*,java.util.*"%>
+<%@page import="java.sql.*,com.elanza48.TMS.model.DAO.*,java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%! PreparedStatement statement=null;

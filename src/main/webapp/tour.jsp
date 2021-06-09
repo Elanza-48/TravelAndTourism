@@ -1,5 +1,5 @@
 
-<%@page import="java.sql.*,com.elanza48.model.DAO.*,java.util.*"%>
+<%@page import="java.sql.*,com.elanza48.TMS.model.DAO.*,java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
     <%! Statement statement=null;

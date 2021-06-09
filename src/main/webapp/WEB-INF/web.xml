@@ -1,5 +1,5 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>TravelAndTourism</display-name>
+  <display-name>Tourism Management System</display-name>
   
   <!-- User Home -->
   <servlet>
@@ -75,7 +75,7 @@
   <!-- Admin Filter -->
   <filter>
     <filter-name>admin_auth</filter-name>
-    <filter-class>com.elanza48.controller.filter.AdminFilter</filter-class>
+    <filter-class>com.elanza48.TMS.controller.filter.AdminFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>admin_auth</filter-name>
@@ -85,7 +85,7 @@
   <!-- User Filter -->
   <filter>
     <filter-name>user_auth</filter-name>
-    <filter-class>com.elanza48.controller.filter.UserFilter</filter-class>
+    <filter-class>com.elanza48.TMS.controller.filter.UserFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>user_auth</filter-name>

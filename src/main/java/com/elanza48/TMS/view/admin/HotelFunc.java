@@ -51,7 +51,7 @@ public class HotelFunc extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "correct");
 					request.setAttribute("customInfo.msg", "Hotel Insertion Successful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -60,7 +60,7 @@ public class HotelFunc extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "error");
 					request.setAttribute("customInfo.msg", "Hotel Insertion Unsuccessful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -71,7 +71,7 @@ public class HotelFunc extends HttpServlet {
 
 				request.setAttribute("customInfo.type", "warning");
 				request.setAttribute("customInfo.msg", "Tour Place already exists !");
-				request.setAttribute("customInfo.back", "adminHome");
+				request.setAttribute("customInfo.back", "admin/adminHome");
 				
 				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 				dispatcher.forward(request, response);
@@ -93,7 +93,7 @@ public class HotelFunc extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "correct");
 					request.setAttribute("customInfo.msg", "Hotel Updation Successful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -101,7 +101,7 @@ public class HotelFunc extends HttpServlet {
 				}else {
 					request.setAttribute("customInfo.type", "error");
 					request.setAttribute("customInfo.msg", "Hotel Updation Unsuccessful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -111,7 +111,7 @@ public class HotelFunc extends HttpServlet {
 
 				request.setAttribute("customInfo.type", "warning");
 				request.setAttribute("customInfo.msg", "Tour Place already exists !");
-				request.setAttribute("customInfo.back", "adminHome");
+				request.setAttribute("customInfo.back", "admin/adminHome");
 				
 				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 				dispatcher.forward(request, response);
@@ -131,7 +131,7 @@ public class HotelFunc extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "correct");
 					request.setAttribute("customInfo.msg", "Hotel Deletion Successful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -139,7 +139,7 @@ public class HotelFunc extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "error");
 					request.setAttribute("customInfo.msg", "Hotel Deletion Unsuccessful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);

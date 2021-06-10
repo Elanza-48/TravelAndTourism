@@ -78,7 +78,7 @@ public class UserDeReg extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "error");
 					request.setAttribute("customInfo.msg", "user De-registration unsuccessful !");
-					request.setAttribute("customInfo.back", "userHome");
+					request.setAttribute("customInfo.back", "user/userHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -88,7 +88,7 @@ public class UserDeReg extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "error");
 					request.setAttribute("customInfo.msg", "user De-registration unsuccessful !");
-					request.setAttribute("customInfo.back", "userHome");
+					request.setAttribute("customInfo.back", "user/userHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);

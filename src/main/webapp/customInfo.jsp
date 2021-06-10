@@ -10,9 +10,9 @@
  %>   
     
  <%
-	String type = (String) request.getAttribute(INFO_ATTRIBUTES[0]) || " ";
- 	String msg = (String) request.getAttribute(INFO_ATTRIBUTES[1]) || " ";
- 	String back = (String) request.getAttribute(INFO_ATTRIBUTES[2]) || "#";
+	String type = (String) request.getAttribute(INFO_ATTRIBUTES[0]);
+ 	String msg = (String) request.getAttribute(INFO_ATTRIBUTES[1]);
+ 	String back = (String) request.getAttribute(INFO_ATTRIBUTES[2]);
  	
  	String txt_color;
  	String img;

@@ -53,7 +53,7 @@ public class BookingFunc extends HttpServlet {
 			if(Integer.parseInt((String)request.getParameter("pNo"))>7) {
 				request.setAttribute("customInfo.type", "warning");
 				request.setAttribute("customInfo.msg", "More than 7 persons not allowed !");
-				request.setAttribute("customInfo.back", "userHome");
+				request.setAttribute("customInfo.back", "user/userHome");
 				
 				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 				dispatcher.forward(request, response);
@@ -85,7 +85,7 @@ public class BookingFunc extends HttpServlet {
 				if(update>0){
 					request.setAttribute("customInfo.type", "correct");
 					request.setAttribute("customInfo.msg", "Booking Successful !");
-					request.setAttribute("customInfo.back", "userHome");
+					request.setAttribute("customInfo.back", "user/userHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -94,7 +94,7 @@ public class BookingFunc extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "error");
 					request.setAttribute("customInfo.msg", "Booking Unsuccessful !");
-					request.setAttribute("customInfo.back", "userHome");
+					request.setAttribute("customInfo.back", "user/userHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -124,7 +124,7 @@ public class BookingFunc extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "correct");
 					request.setAttribute("customInfo.msg", "Cancellation Successful !");
-					request.setAttribute("customInfo.back", "userHome");
+					request.setAttribute("customInfo.back", "user/userHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -132,7 +132,7 @@ public class BookingFunc extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "error");
 					request.setAttribute("customInfo.msg", "Cancellation Unsuccessful !");
-					request.setAttribute("customInfo.back", "userHome");
+					request.setAttribute("customInfo.back", "user/userHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);

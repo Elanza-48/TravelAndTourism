@@ -47,7 +47,7 @@ public class TourFunc extends HttpServlet {
 			if(place_1.equals(place_2) || place_1.equals(place_3) || place_2.equals(place_3)){
 				request.setAttribute("customInfo.type", "warning");
 				request.setAttribute("customInfo.msg", "All three places must be unique !");
-				request.setAttribute("customInfo.back", "adminHome");
+				request.setAttribute("customInfo.back", "admin/adminHome");
 				
 				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 				dispatcher.forward(request, response);
@@ -55,7 +55,7 @@ public class TourFunc extends HttpServlet {
 			}else if(Integer.parseInt(request.getParameter("tDays_a"))>10){
 				request.setAttribute("customInfo.type", "warning");
 				request.setAttribute("customInfo.msg", "More than 10 days not allowed !");
-				request.setAttribute("customInfo.back", "adminHome");
+				request.setAttribute("customInfo.back", "admin/adminHome");
 				
 				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 				dispatcher.forward(request, response);
@@ -63,7 +63,7 @@ public class TourFunc extends HttpServlet {
 			}else if(Integer.parseInt(request.getParameter("tPrice_a"))<10000) {
 				request.setAttribute("customInfo.type", "warning");
 				request.setAttribute("customInfo.msg", "Minimum price of ₹10000 be charged !");
-				request.setAttribute("customInfo.back", "adminHome");
+				request.setAttribute("customInfo.back", "admin/adminHome");
 				
 				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 				dispatcher.forward(request, response);
@@ -84,7 +84,7 @@ public class TourFunc extends HttpServlet {
 					if(update>0){
 						request.setAttribute("customInfo.type", "correct");
 						request.setAttribute("customInfo.msg", "Tour Insertion Successful !");
-						request.setAttribute("customInfo.back", "adminHome");
+						request.setAttribute("customInfo.back", "admin/adminHome");
 						
 						RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 						dispatcher.forward(request, response);
@@ -92,7 +92,7 @@ public class TourFunc extends HttpServlet {
 					}else{
 						request.setAttribute("customInfo.type", "error");
 						request.setAttribute("customInfo.msg", "Tour Insertion Unsuccessful !");
-						request.setAttribute("customInfo.back", "adminHome");
+						request.setAttribute("customInfo.back", "admin/adminHome");
 						
 						RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 						dispatcher.forward(request, response);
@@ -118,7 +118,7 @@ public class TourFunc extends HttpServlet {
 
 				request.setAttribute("customInfo.type", "warning");
 				request.setAttribute("customInfo.msg", "All three places must be unique !");
-				request.setAttribute("customInfo.back", "adminHome");
+				request.setAttribute("customInfo.back", "admin/adminHome");
 				
 				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 				dispatcher.forward(request, response);
@@ -126,7 +126,7 @@ public class TourFunc extends HttpServlet {
 
 				request.setAttribute("customInfo.type", "warning");
 				request.setAttribute("customInfo.msg", "More than 10 days not allowed !");
-				request.setAttribute("customInfo.back", "adminHome");
+				request.setAttribute("customInfo.back", "admin/adminHome");
 				
 				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 				dispatcher.forward(request, response);
@@ -134,7 +134,7 @@ public class TourFunc extends HttpServlet {
 
 				request.setAttribute("customInfo.type", "warning");
 				request.setAttribute("customInfo.msg", "Minimum price of ₹10000 be charged !");
-				request.setAttribute("customInfo.back", "adminHome");
+				request.setAttribute("customInfo.back", "admin/adminHome");
 				
 				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 				dispatcher.forward(request, response);
@@ -156,7 +156,7 @@ public class TourFunc extends HttpServlet {
 
 						request.setAttribute("customInfo.type", "correct");
 						request.setAttribute("customInfo.msg", "Tour Updation Successful !");
-						request.setAttribute("customInfo.back", "adminHome");
+						request.setAttribute("customInfo.back", "admin/adminHome");
 						
 						RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 						dispatcher.forward(request, response);
@@ -164,7 +164,7 @@ public class TourFunc extends HttpServlet {
 
 						request.setAttribute("customInfo.type", "error");
 						request.setAttribute("customInfo.msg", "Tour Updation Unsuccessful !");
-						request.setAttribute("customInfo.back", "adminHome");
+						request.setAttribute("customInfo.back", "admin/adminHome");
 						
 						RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 						dispatcher.forward(request, response);
@@ -191,7 +191,7 @@ public class TourFunc extends HttpServlet {
 					
 					request.setAttribute("customInfo.type", "correct");
 					request.setAttribute("customInfo.msg", "Tour Deletion Successful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
@@ -199,7 +199,7 @@ public class TourFunc extends HttpServlet {
 
 					request.setAttribute("customInfo.type", "error");
 					request.setAttribute("customInfo.msg", "Tour Deletion Unsuccessful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);

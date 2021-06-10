@@ -47,14 +47,14 @@ public class MiscFunc extends HttpServlet {
 				if(update>0){
 					request.setAttribute("customInfo.type", "correct");
 					request.setAttribute("customInfo.msg", "Booking Revocation Successful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);
 				}else{
 					request.setAttribute("customInfo.type", "error");
 					request.setAttribute("customInfo.msg", "Booking Revocation Unsuccessful !");
-					request.setAttribute("customInfo.back", "adminHome");
+					request.setAttribute("customInfo.back", "admin/adminHome");
 					
 					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
 					dispatcher.forward(request, response);

@@ -14,7 +14,7 @@
 
   
 ---
->The project also includes some pieces of 3rd party works integrated within the project without which the project would not be successful. _Please checkout the **[CONTRIBUTORS](CONTRIBUTING.md)** to support them._:blush:
+>The project also includes some pieces of 3rd party works integrated within the project without which the project would not be successful. _Please checkout the **[CONTRIBUTORS](CONTRIBUTING.md)** to support them._:v:
 ---
 #### Checkout [LICENSE](LICENSE) Agreement before using this piece of work.
 

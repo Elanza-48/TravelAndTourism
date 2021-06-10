@@ -1,6 +1,8 @@
 package com.elanza48.TMS.view.admin;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,37 +45,19 @@ public class MiscFunc extends HttpServlet {
 				update=statement.executeUpdate();
 				
 				if(update>0){
-					response.getWriter().
-					print("<html><head>\r\n" + 
-							"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-							"<title>Misc Func</title>"+
-							"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-							"</head>\r\n" + 
-							"<body>"+
-							"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-							"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">Booking Revocation Successful !</FONT>\r\n" + 
-							"<BR>\r\n" + 
-							"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-							"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-							"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-							"</P>"+
-							"</body></html>");
+					request.setAttribute("customInfo.type", "correct");
+					request.setAttribute("customInfo.msg", "Booking Revocation Successful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}else{
-					response.getWriter().
-					print("<html><head>\r\n" + 
-							"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-							"<title>Misc Func</title>"+
-							"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-							"</head>\r\n" + 
-							"<body>"+
-							"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-							"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Booking Revocation Unsuccessful !</FONT>\r\n" + 
-							"<BR>\r\n" + 
-							"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Try again</A></font>\r\n" + 
-							"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-							"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-							"</P>"+
-							"</body></html>");
+					request.setAttribute("customInfo.type", "error");
+					request.setAttribute("customInfo.msg", "Booking Revocation Unsuccessful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}
 			}
 		}catch(SQLException s){

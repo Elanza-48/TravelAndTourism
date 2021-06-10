@@ -4,6 +4,7 @@ import java.io.IOException;
 import org.sqlite.SQLiteException;
 import java.sql.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,29 +42,20 @@ public class UserDeReg extends HttpServlet {
 		resource=session.getServletContext().getContextPath();
 		
 		if(session.getAttribute("name")==null || (int)session.getAttribute("auth")==1 || session.getAttribute("de-reg")==null){
-			response.getWriter()
-			.print(
-				"<html>\r\n" + 
-				"<head>\r\n" + 
-				"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-				"<title>UserDeReg</title>\r\n" + 
-				"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-				"</head>\r\n" + 
-				"<body>"+
-				"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-				"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">You are not permitted to Access the User Portal !</FONT>\r\n" + 
-				"<BR>\r\n" + 
-				"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userLogin.html\">&lt;&lt; Back</A></font>\r\n" + 
-				"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-				"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-				"</P></body></html>");
+
+			request.setAttribute("customInfo.type", "error");
+			request.setAttribute("customInfo.msg", "You are not permitted to Access the User Portal !");
+			request.setAttribute("customInfo.back", "userLogin.html");
+			
+			RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+			dispatcher.forward(request, response);
 		}else{
+
 			if(((String)session.getAttribute("de-reg")).equals("true")){
 				session.removeAttribute("de-reg");
 				connection=ConnectionFactory.getInstance().getConnection();
 			
 				String name= (String) session.getAttribute("name");
-				
 				
 				try{
 					statement=connection.prepareStatement("DELETE FROM userAccount WHERE U_EMAIL=? AND U_ADMIN=0");
@@ -73,62 +65,33 @@ public class UserDeReg extends HttpServlet {
 					
 					session.invalidate();
 					System.out.println("\nLogged out Successfully! [USER: "+name+"]\n");
+
+					request.setAttribute("customInfo.type", "correct");
+					request.setAttribute("customInfo.msg", "user De-registered !");
+					request.setAttribute("customInfo.back", "home.html");
 					
-					response.getWriter()
-					.print(
-						"<html>\r\n" + 
-						"<head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>UserDeReg</title>\r\n" + 
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">user De-registered !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"../home.html\">&lt;&lt; home</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
+					
 				}catch(SQLiteException s){
 					s.printStackTrace();
-					response.getWriter()
-					.print(
-						"<html>\r\n" + 
-						"<head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>UserDeReg</title>\r\n" + 
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">user De-registration unsuccessful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userHome\">&lt;&lt; home</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "error");
+					request.setAttribute("customInfo.msg", "user De-registration unsuccessful !");
+					request.setAttribute("customInfo.back", "userHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
+
 				}catch(SQLException s){
 					s.printStackTrace();
-					response.getWriter()
-					.print(
-						"<html>\r\n" + 
-						"<head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>UserDeReg</title>\r\n" + 
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">user De-registration unsuccessful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userHome\">&lt;&lt; home</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "error");
+					request.setAttribute("customInfo.msg", "user De-registration unsuccessful !");
+					request.setAttribute("customInfo.back", "userHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}
 	}
 

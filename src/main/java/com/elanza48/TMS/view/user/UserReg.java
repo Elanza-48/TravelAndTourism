@@ -1,6 +1,8 @@
 package com.elanza48.TMS.view.user;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -72,77 +74,44 @@ public class UserReg extends HttpServlet {
 			
 			if(updatecode>0){
 				System.out.println("Registration Successful ! ["+(String)request.getParameter("name")+"]");
-				response.getWriter()
-				.print(
-						"<html>\r\n" + 
-						"<head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>UserReg</title>\r\n" + 
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">User Registration Successful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userLogin.html\">&lt;&lt; Login Now</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>\r\n" + 
-						"</body></html>");
+
+				request.setAttribute("customInfo.type", "correct");
+				request.setAttribute("customInfo.msg", "User Registration Successful !");
+				request.setAttribute("customInfo.back", "userLogin.html");
+				
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
+
 			}else {
-				response.getWriter()
-				.print(
-						"<html>\r\n" + 
-						"<head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>UserReg</title>\r\n" + 
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">User Registration Unsuccessful ! <br> Retry again.</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userReg.html\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P></body></html>");
+
+				request.setAttribute("customInfo.type", "error");
+				request.setAttribute("customInfo.msg", "User Registration Unsuccessful !");
+				request.setAttribute("customInfo.back", "userReg.html");
+				
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
+
 			}
 		}catch(SQLIntegrityConstraintViolationException e){
 			e.printStackTrace();
-			response.getWriter()
-			.print(
-					"<html>\r\n" + 
-					"<head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>UserReg</title>\r\n" +
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Either Email or Mobile number has already been registered !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userReg.html\">&lt;&lt; Back</A></font>\r\n" +
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P></body></html>");
+
+			request.setAttribute("customInfo.type", "error");
+			request.setAttribute("customInfo.msg", "Either Email or Mobile number has already been registered !");
+			request.setAttribute("customInfo.back", "userReg.html");
+			
+			RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+			dispatcher.forward(request, response);
+
 		}catch(SQLiteException e){
 			e.printStackTrace();
-			response.getWriter()
-			.print(
-					"<html>\r\n" + 
-					"<head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>UserReg</title>\r\n" + 
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Either Email or Mobile number has already been registered !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userReg.html\">&lt;&lt; Back</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P></body></html>");
+
+			request.setAttribute("customInfo.type", "error");
+			request.setAttribute("customInfo.msg", "Either Email or Mobile number has already been registered !");
+			request.setAttribute("customInfo.back", "userReg.html");
+			
+			RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+			dispatcher.forward(request, response);
+
 		}catch(SQLException c){
 			c.printStackTrace();
 		}

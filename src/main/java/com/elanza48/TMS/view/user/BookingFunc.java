@@ -3,6 +3,7 @@ package com.elanza48.TMS.view.user;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,26 +51,14 @@ public class BookingFunc extends HttpServlet {
 			int price=0;
 			
 			if(Integer.parseInt((String)request.getParameter("pNo"))>7) {
-				response.getWriter().
-				print("<html><head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" +
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/bookingFunc.css\">\r\n" +
-					"<title>Booking Info</title>"+
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"<script type=\"text/javascript\" src=\""+resource+"/scripts/main.js\"></script>"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">More than 7 persons not allowed !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userHome\">&lt;&lt; Try again</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P>"+
-					"</body></html>");
+				request.setAttribute("customInfo.type", "warning");
+				request.setAttribute("customInfo.msg", "More than 7 persons not allowed !");
+				request.setAttribute("customInfo.back", "userHome");
+				
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
 			}else {
 				
-			
 			try{
 				statement=connection.prepareStatement("INSERT INTO bookingInfo (B_DATE, T_ID, T_DATE, U_EMAIL, PERSONS, R_TYPE, T_AMOUNT)"+
 						" VALUES((SELECT date('now')),?,?,?,?,?,(SELECT T_PRICE FROM tourInfo WHERE T_ID=?)+?)");
@@ -94,41 +83,22 @@ public class BookingFunc extends HttpServlet {
 				update= statement.executeUpdate();
 				
 				if(update>0){
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" +
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/bookingFunc.css\">\r\n" + 
-						"<title>Booking Info</title>"+
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"<script type=\"text/javascript\" src=\""+resource+"/scripts/main.js\"></script>"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">Booking Successful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+					request.setAttribute("customInfo.type", "correct");
+					request.setAttribute("customInfo.msg", "Booking Successful !");
+					request.setAttribute("customInfo.back", "userHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
+
 				}else {
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" +
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/bookingFunc.css\">\r\n" + 
-						"<title>Booking Info</title>"+
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"<script type=\"text/javascript\" src=\""+resource+"/scripts/main.js\"></script>"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Booking Unsuccessful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userHome\">&lt;&lt; Try again</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "error");
+					request.setAttribute("customInfo.msg", "Booking Unsuccessful !");
+					request.setAttribute("customInfo.back", "userHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
+
 				}
 				
 			}catch(SQLiteException s){
@@ -151,37 +121,21 @@ public class BookingFunc extends HttpServlet {
 				update= statement.executeUpdate();
 				
 				if(update>0){
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Booking Info</title>"+
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">Cancellation Successful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "correct");
+					request.setAttribute("customInfo.msg", "Cancellation Successful !");
+					request.setAttribute("customInfo.back", "userHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}else{
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Booking Info</title>"+
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Cancellation Unsuccessful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"userHome\">&lt;&lt; Try again</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "error");
+					request.setAttribute("customInfo.msg", "Cancellation Unsuccessful !");
+					request.setAttribute("customInfo.back", "userHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}
 
 			}catch(SQLiteException s){

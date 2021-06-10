@@ -1,6 +1,8 @@
 package com.elanza48.TMS.view.admin;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,53 +45,28 @@ public class TourFunc extends HttpServlet {
 			String place_3= (String) request.getParameter("tPlace_a3");
 			
 			if(place_1.equals(place_2) || place_1.equals(place_3) || place_2.equals(place_3)){
-				response.getWriter().
-				print("<html><head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>Tour Func</title>\r\n" + 
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/warning48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"#fb8c00\" size=5 Face=\"verdana\">All three places must be unique !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P>"+
-					"</body></html>");
+				request.setAttribute("customInfo.type", "warning");
+				request.setAttribute("customInfo.msg", "All three places must be unique !");
+				request.setAttribute("customInfo.back", "adminHome");
+				
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
+
 			}else if(Integer.parseInt(request.getParameter("tDays_a"))>10){
-				response.getWriter().
-				print("<html><head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>Tour Func</title>\r\n" + 
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/warning48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"#fb8c00\" size=5 Face=\"verdana\">More than 10 days not allowed !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P>"+
-					"</body></html>");
+				request.setAttribute("customInfo.type", "warning");
+				request.setAttribute("customInfo.msg", "More than 10 days not allowed !");
+				request.setAttribute("customInfo.back", "adminHome");
+				
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
+
 			}else if(Integer.parseInt(request.getParameter("tPrice_a"))<10000) {
-				response.getWriter().
-				print("<html><head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>Tour Func</title>\r\n" + 
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/warning48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"#fb8c00\" size=5 Face=\"verdana\">Minimum price of ₹10000 be charged !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P>"+
-					"</body></html>");
+				request.setAttribute("customInfo.type", "warning");
+				request.setAttribute("customInfo.msg", "Minimum price of ₹10000 be charged !");
+				request.setAttribute("customInfo.back", "adminHome");
+				
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
 			}else {
 				
 				
@@ -105,37 +82,20 @@ public class TourFunc extends HttpServlet {
 					update= statement.executeUpdate();
 					
 					if(update>0){
-						response.getWriter().
-						print("<html><head>\r\n" + 
-							"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-							"<title>Tour Func</title>\r\n" + 
-							"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-							"</head>\r\n" + 
-							"<body>"+
-							"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-							"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">Tour Insertion Successful !</FONT>\r\n" + 
-							"<BR>\r\n" + 
-							"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-							"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-							"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-							"</P>"+
-							"</body></html>");
+						request.setAttribute("customInfo.type", "correct");
+						request.setAttribute("customInfo.msg", "Tour Insertion Successful !");
+						request.setAttribute("customInfo.back", "adminHome");
+						
+						RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+						dispatcher.forward(request, response);
+
 					}else{
-						response.getWriter().
-						print("<html><head>\r\n" + 
-							"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-							"<title>Tour Func</title>\r\n" + 
-							"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-							"</head>\r\n" + 
-							"<body>"+
-							"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-							"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Tour Insertion Unsuccessful !</FONT>\r\n" + 
-							"<BR>\r\n" + 
-							"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Try again</A></font>\r\n" + 
-							"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-							"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-							"</P>"+
-							"</body></html>");
+						request.setAttribute("customInfo.type", "error");
+						request.setAttribute("customInfo.msg", "Tour Insertion Unsuccessful !");
+						request.setAttribute("customInfo.back", "adminHome");
+						
+						RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+						dispatcher.forward(request, response);
 					}
 				}catch(SQLException e){
 					e.printStackTrace();
@@ -155,53 +115,29 @@ public class TourFunc extends HttpServlet {
 			String place_3= (String) request.getParameter("tPlace_u3");
 
 			if(place_1.equals(place_2) || place_1.equals(place_3) || place_2.equals(place_3)){
-				response.getWriter().
-				print("<html><head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>Tour Func</title>\r\n" + 
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/warning48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"#fb8c00\" size=5 Face=\"verdana\">All three places must be unique !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P>"+
-					"</body></html>");
+
+				request.setAttribute("customInfo.type", "warning");
+				request.setAttribute("customInfo.msg", "All three places must be unique !");
+				request.setAttribute("customInfo.back", "adminHome");
+				
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
 			}else if(Integer.parseInt(request.getParameter("tDays_u"))>10){
-				response.getWriter().
-				print("<html><head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>Tour Func</title>\r\n" + 
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/warning48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"#fb8c00\" size=5 Face=\"verdana\">More than 10 days not allowed !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P>"+
-					"</body></html>");
+
+				request.setAttribute("customInfo.type", "warning");
+				request.setAttribute("customInfo.msg", "More than 10 days not allowed !");
+				request.setAttribute("customInfo.back", "adminHome");
+				
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
 			}else if(Integer.parseInt(request.getParameter("tPrice_u"))<10000) {
-				response.getWriter().
-				print("<html><head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>Tour Func</title>\r\n" + 
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/warning48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"#fb8c00\" size=5 Face=\"verdana\">Minimum price of ₹10000 be charged !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P>"+
-					"</body></html>");
+
+				request.setAttribute("customInfo.type", "warning");
+				request.setAttribute("customInfo.msg", "Minimum price of ₹10000 be charged !");
+				request.setAttribute("customInfo.back", "adminHome");
+				
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
 			}else {
 				
 				try{
@@ -217,37 +153,21 @@ public class TourFunc extends HttpServlet {
 					update= statement.executeUpdate();
 					
 					if(update>0){
-						response.getWriter().
-						print("<html><head>\r\n" + 
-							"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-							"<title>Tour Func</title>\r\n" + 
-							"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-							"</head>\r\n" + 
-							"<body>"+
-							"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-							"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">Tour Updation Successful !</FONT>\r\n" + 
-							"<BR>\r\n" + 
-							"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-							"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-							"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-							"</P>"+
-							"</body></html>");
+
+						request.setAttribute("customInfo.type", "correct");
+						request.setAttribute("customInfo.msg", "Tour Updation Successful !");
+						request.setAttribute("customInfo.back", "adminHome");
+						
+						RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+						dispatcher.forward(request, response);
 					}else{
-						response.getWriter().
-						print("<html><head>\r\n" + 
-							"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-							"<title>Tour Func</title>\r\n" + 
-							"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-							"</head>\r\n" + 
-							"<body>"+
-							"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-							"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Tour Updation Unsuccessful !</FONT>\r\n" + 
-							"<BR>\r\n" + 
-							"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-							"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-							"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-							"</P>"+
-							"</body></html>");
+
+						request.setAttribute("customInfo.type", "error");
+						request.setAttribute("customInfo.msg", "Tour Updation Unsuccessful !");
+						request.setAttribute("customInfo.back", "adminHome");
+						
+						RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+						dispatcher.forward(request, response);
 					}
 				}catch(SQLException e){
 					e.printStackTrace();
@@ -268,37 +188,21 @@ public class TourFunc extends HttpServlet {
 				update= statement.executeUpdate();
 				
 				if(update>0){
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Tour Func</title>\r\n" + 
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">Tour Deletion Successful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+					
+					request.setAttribute("customInfo.type", "correct");
+					request.setAttribute("customInfo.msg", "Tour Deletion Successful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}else{
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Tour Func</title>\r\n" + 
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Tour Deletion Unsuccessful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "error");
+					request.setAttribute("customInfo.msg", "Tour Deletion Unsuccessful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}
 			}catch(SQLException e){
 				e.printStackTrace();

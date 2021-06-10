@@ -2,6 +2,8 @@ package com.elanza48.TMS.view.admin;
 
 import java.io.IOException;
 import org.sqlite.SQLiteException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,56 +48,34 @@ public class HotelFunc extends HttpServlet {
 				update= statement.executeUpdate();
 				
 				if(update>0){
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Hotel Func</title>\r\n" +
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">Hotel Insertion Successful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "correct");
+					request.setAttribute("customInfo.msg", "Hotel Insertion Successful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
+
 				}else{
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Hotel Func</title>\r\n" +
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Hotel Insertion Unsuccessful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "error");
+					request.setAttribute("customInfo.msg", "Hotel Insertion Unsuccessful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
+
 				}
 			}catch(SQLiteException s){
 				s.printStackTrace();
+
+				request.setAttribute("customInfo.type", "warning");
+				request.setAttribute("customInfo.msg", "Tour Place already exists !");
+				request.setAttribute("customInfo.back", "adminHome");
 				
-				response.getWriter().
-				print("<html><head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>Hotel Func</title>\r\n" +
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Tour Place already exists !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P>"+
-					"</body></html>");
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
+				
 			}catch(SQLException e){
 				e.printStackTrace();
 			}
@@ -110,56 +90,32 @@ public class HotelFunc extends HttpServlet {
 				update= statement.executeUpdate();
 				
 				if(update>0){
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Hotel Func</title>\r\n" +
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">Hotel Updation Successful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "correct");
+					request.setAttribute("customInfo.msg", "Hotel Updation Successful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
+					
 				}else {
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Hotel Func</title>\r\n" +
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Hotel Updation Unsuccessful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+					request.setAttribute("customInfo.type", "error");
+					request.setAttribute("customInfo.msg", "Hotel Updation Unsuccessful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}
 			}catch(SQLiteException s){
 				s.printStackTrace();
+
+				request.setAttribute("customInfo.type", "warning");
+				request.setAttribute("customInfo.msg", "Tour Place already exists !");
+				request.setAttribute("customInfo.back", "adminHome");
 				
-				response.getWriter().
-				print("<html><head>\r\n" + 
-					"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-					"<title>Hotel Func</title>\r\n" +
-					"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-					"</head>\r\n" + 
-					"<body>"+
-					"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-					"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Tour Place already exists !</FONT>\r\n" + 
-					"<BR>\r\n" + 
-					"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-					"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-					"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-					"</P>"+
-					"</body></html>");
+				RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+				dispatcher.forward(request, response);
+
 			}catch(SQLException e){
 				e.printStackTrace();
 			}
@@ -172,37 +128,21 @@ public class HotelFunc extends HttpServlet {
 				update= statement.executeUpdate();
 				
 				if(update>0){
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Hotel Func</title>\r\n" +
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/correct48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Green\" size=5 Face=\"verdana\">Hotel Deletion Successful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "correct");
+					request.setAttribute("customInfo.msg", "Hotel Deletion Successful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}else{
-					response.getWriter().
-					print("<html><head>\r\n" + 
-						"<link rel=\"stylesheet\" type=\"text/css\" href=\""+resource+"/css/theme.css\">\r\n" + 
-						"<title>Hotel Func</title>\r\n" +
-						"<link rel=\"shortcut icon\" type=\"image/png\" href=\""+resource+"/Images/fabicon.png\">"+
-						"</head>\r\n" + 
-						"<body>"+
-						"<P align=center><IMG SRC=\""+resource+"/Images/error48.png\" WIDTH=\"48\" HEIGHT=\"48\" BORDER=\"0\" ALT=\"\"><br>\r\n" + 
-						"<FONT COLOR=\"Red\" size=5 Face=\"verdana\">Hotel Deletion Unsuccessful !</FONT>\r\n" + 
-						"<BR>\r\n" + 
-						"<font Face=\"Comic Sans MS\" size=3><A HREF=\"adminHome\">&lt;&lt; Back</A></font>\r\n" + 
-						"<img alt=\"\" src=\""+resource+"/Images/banner.png\" width=\"60%\" height=\"30%\" \r\n" + 
-						"		style=\"position: absolute; border-radius: 20px; left: 20%; top: 30%;\">"+
-						"</P>"+
-						"</body></html>");
+
+					request.setAttribute("customInfo.type", "error");
+					request.setAttribute("customInfo.msg", "Hotel Deletion Unsuccessful !");
+					request.setAttribute("customInfo.back", "adminHome");
+					
+					RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/customInfo");
+					dispatcher.forward(request, response);
 				}
 			}catch(SQLException e){
 				e.printStackTrace();

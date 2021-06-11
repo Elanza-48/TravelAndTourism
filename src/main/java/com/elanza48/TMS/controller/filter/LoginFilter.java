@@ -48,7 +48,6 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
 		ServletException {
 		session=(HttpSession) ((HttpServletRequest)request).getSession(true);
-		String resource=session.getServletContext().getContextPath();
 		
 		if(session.getAttribute("name")!=null) {
 			if((int)session.getAttribute("auth")==1) {

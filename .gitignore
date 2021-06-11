@@ -6,6 +6,7 @@
 /target/*
 build
 .project
+.classpath
 
 # Compiled class file
 *.class
